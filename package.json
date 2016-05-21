@@ -10,6 +10,6 @@
     "morgan": "^1.7.0"
   },
   "scripts" : {
-    "start" : "node server.js "
+    "start" : "node --harmony_proxies server.js "
   }
 }
