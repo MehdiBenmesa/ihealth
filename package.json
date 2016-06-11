@@ -7,9 +7,10 @@
     "harmony-reflect": "^1.4.6",
     "jsonwebtoken": "^5.7.0",
     "mongoose": "^4.4.5",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "path": "^0.12.7"
   },
-  "scripts" : {
-    "start" : "node --harmony_proxies server.js "
+  "scripts": {
+    "start": "node --harmony_proxies server.js "
   }
 }

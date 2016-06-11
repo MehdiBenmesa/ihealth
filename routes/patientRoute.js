@@ -26,7 +26,7 @@ module.exports = ( function(express, PatientController, HTAPatientController, Di
 
 	});
 
-	patientRoute.get('/allpatients', function(req, res){
+	patientRoute.get('/get-patients', function(req, res){
 		PatientController.getAllPatients(function(patients){
 			res.json(patients);
 		});

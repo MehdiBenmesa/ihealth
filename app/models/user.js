@@ -11,12 +11,33 @@ var UserSchema = new Schema({
 
 
 var DoctorSchema = UserSchema.extend({
-	patients : [{ type : mongoose.Schema.Types.ObjectId, ref : 'Patient' }]
+	patients : [{ type : mongoose.Schema.Types.ObjectId, ref : 'Patient' }],
+  rendezVous : [{
+    date : Date,
+    hour : Number,
+    minute : Number,
+    patient : {type : mongoose.Schema.Types.ObjectId, ref: 'Patient'}
+  }]
 });
 
 
 var PatientSchema = UserSchema.extend({
-	doctors : [{ type : mongoose.Schema.Types.ObjectId, ref : 'Doctor'} ]
+	doctors : [{ type : mongoose.Schema.Types.ObjectId, ref : 'Doctor'} ],
+  diagnostics : [{
+    diagnostic : String,
+    date : {type : Date, default : Date.now},
+    doctor : {type : mongoose.Schema.Types.ObjectId, ref : 'Doctor'}
+  }],
+  rendezVous : [{
+    date : Date,
+    hour : Number,
+    minute : Number,
+    doctor: {type : mongoose.Schema.Types.ObjectId, ref: 'Doctor'}
+  }],
+  medicaments : [{
+    medicament : String,
+    frequency : String
+  }]
 });	
 
 var DiabetePatientSchema = PatientSchema.extend({
@@ -67,12 +88,9 @@ module.exports = {
 };
 
 // var p = new  Doctor({
-// 	name : 'm',
-// 	password : 'k',
-// 	email : 'l',
-// 	type : 'k',
-// 	admin : false,
-// 	patients : ['573621461fd8fa9147e1fce2']
+// 	name : 'hakim',
+// 	password : 'hakim',
+// 	email : 'hakim@esi.dz'
 // });
 //
 // 	p.save(function(err, u) {
@@ -85,14 +103,14 @@ module.exports = {
 // 	console.log(doctor.patients);
 // });
 		   
-// var p = new OldPatient({
+// var p = new DiabetePatient({
 //
-// 	name : 'karim',
-// 	password : 'ddd',
-// 	email : 'sss'
+// 	name : 'karim1',
+// 	password : 'karim1',
+// 	email : 'karim1@esi.dz'
 //
 // });
 // p.save(function(err, u){
 // console.log(u);
 // });
-
+//

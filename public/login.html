@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.0/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Apr 2015 10:51:52 GMT -->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RA9IBNI | Connexion</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet">
+        <style>
+                .logo-name{
+                    margin-left: -130px;
+                   color : grey;
+                   font-family: "cambria";
+                }
+
+                .logo-name > span{
+                    color : #1ab394;
+                    font-family: "cambria";
+                }
+                
+        </style>
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name"><span>RA9</span>IBNI</h1>
+
+            </div>
+            <h3>Bienvenue</h3>
+            <p>Le site Web qui vous prend en charge.
+                <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
+            </p>
+            <p> Se connecter</p>
+            <div class="m-t" role="form"> 
+                <div class="form-group">
+                    <input type="text" id="name" class="form-control" placeholder="Nom d'utilisateur" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" class="form-control" placeholder="Mot de passe" required="">
+                </div>
+                <button id="login" class="btn btn-primary block full-width m-b">Se connecter</button>
+
+                <a href="#"><small>Mot de passe oublié?</small></a>
+                <p class="text-muted text-center"><small>Pas de compte?</small></p>
+                <a class="btn btn-sm btn-white btn-block" href="register.html">Créer un compte</a>
+            </div>
+            <p class="m-t"> <small>3MAC'S &copy; 2016</small> </p>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('#login').on('click', function(e){
+          var user = {};
+          user.name = $('#name').val();
+          user.password = $('#password').val();
+          $.post('http://localhost:8080/api/authenticate',{name : user.name, password: user.password}, function(data){
+              // localStorage.setItem();
+              console.log(data);
+              if(data.message){
+                var type = data.user._type;
+                localStorage.setItem('userToken', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+                  switch(type){
+                      case 'Doctor' :   
+                        location.href = 'doctor.html'; 
+                        break;
+                  }
+              }
+          });
+        }); 
+      });
+    </script>
+
+</body>
+
+
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.0/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Apr 2015 10:51:52 GMT -->
+</html>

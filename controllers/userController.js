@@ -26,7 +26,8 @@ module.exports = (function(app, User, jwt) {
 					cb({
 						success: true,
 						message: 'Enjoy your token!',
-						token: token
+						token: token,
+            user : user
 					});
 				}		
 
